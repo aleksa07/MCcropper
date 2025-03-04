@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Minecraft Server Icon Uploader</title>
+    <title>Minecraft Server Icon Cropper</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
 </head>
 <body>
     <div class="container">
-        <h1>Minecraft Server Icon Uploader</h1>
+        <h2>By aleksa07 
+            <img id="IMG" src="Logo.ico" alt="Logo" >
+        </h2>
+        <h1>Minecraft Server Icon Cropper</h1>
         <p class="upload-instructions">Upload a square image (64x64 recommended)</p>
         
         <div class="drop-zone" id="drop-zone">
@@ -22,8 +25,14 @@
 
         <button id="crop-btn" style="display:none;">Crop to 64x64</button>
 
-        <div>
+        <div id="result-container" style="display:none;">
             <img id="cropped-result">
+            <div class="button-group">
+                <div class="button-wrapper">
+                    <button id="upload-btn" style="display:none;" disabled>Upload Server Icon</button>
+                </div>
+                <button id="save-btn" style="display:none;">Save to PC</button>
+            </div>
         </div>
     </div>
 

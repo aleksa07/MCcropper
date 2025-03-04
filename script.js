@@ -3,9 +3,11 @@ const fileInput = document.getElementById('file-input');
 const imageToCrop = document.getElementById('image-to-crop');
 const cropBtn = document.getElementById('crop-btn');
 const croppedResult = document.getElementById('cropped-result');
+const resultContainer = document.getElementById('result-container');
+const uploadBtn = document.getElementById('upload-btn');
+const saveBtn = document.getElementById('save-btn');
+let croppedImageBlob = null;
 let cropper;
-
-document.getElementById('cropped-result').classList.add('disabled');
 
 // Prevent default drag behaviors
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -49,6 +51,12 @@ function handleDrop(e) {
 }
 
 function handleFiles(files) {
+    // Reset previous state
+    resultContainer.style.display = 'none';
+    uploadBtn.style.display = 'none';
+    saveBtn.style.display = 'none';
+    croppedResult.src = '';
+
     // If called from file input, get files from event
     files = files.target ? files.target.files : files;
     
@@ -92,6 +100,28 @@ cropBtn.addEventListener('click', () => {
     });
 
     // Set cropped image
-    document.getElementById('cropped-result').classList.remove('disabled');
     croppedResult.src = croppedCanvas.toDataURL('image/png');
+    
+    // Convert canvas to blob for uploading
+    croppedCanvas.toBlob((blob) => {
+        croppedImageBlob = blob;
+    });
+
+    // Show result container and buttons
+    resultContainer.style.display = 'flex';
+    uploadBtn.style.display = 'block';
+    saveBtn.style.display = 'block';
+});
+
+// Save file to PC
+saveBtn.addEventListener('click', () => {
+    if (!croppedImageBlob) return;
+
+    // Create a link element and trigger download
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(croppedImageBlob);
+    link.download = 'server-icon.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 });
