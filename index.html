@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minecraft Server Icon Uploader</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Minecraft Server Icon Uploader</h1>
+        <p class="upload-instructions">Upload a square image (64x64 recommended)</p>
+        
+        <div class="drop-zone" id="drop-zone">
+            <input type="file" id="file-input" accept="image/*">
+            <p>Drag and drop or click to upload image</p>
+        </div>
+
+        <div id="image-container">
+            <img id="image-to-crop">
+        </div>
+
+        <button id="crop-btn" style="display:none;">Crop to 64x64</button>
+
+        <div>
+            <img id="cropped-result">
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
